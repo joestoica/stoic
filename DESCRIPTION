@@ -1,0 +1,10 @@
+Package: stoic
+Type: Package
+Title: Making Joe's life easier 
+Version: 0.1.0
+Author: Joe Stoica
+Maintainer: Joe Stoica <joe.stoica@gmail.com>
+Description: Contains functions, RMarkdown templates, color palettes, ggplot themes, and some other things!
+License: None
+Encoding: UTF-8
+LazyData: true
