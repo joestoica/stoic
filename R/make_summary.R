@@ -36,9 +36,7 @@ make_summary <- function(df, columns, funs = c("length", "mean", "var", "sd", "m
     names = colnames(df)
 
     # apply make_summary_helper to every column in df and return a dataframe
-    df_summary = apply(df, 2, make_summary_helper, funs = sapply(funs, get)) %>%
-        t() %>%
-        data.frame()
+    df_summary = data.frame(t(apply(df, 2, make_summary_helper, funs = sapply(funs, get))))
 
     # cbind the names from earlier to the summary table
     df_summary = cbind(names, df_summary)
