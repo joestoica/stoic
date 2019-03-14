@@ -1,0 +1,62 @@
+---
+title: "stoic_template"
+author: "Joe Stoica"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      cache = TRUE, 
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = "center")
+library(tidyverse)
+```
+
+```{r data}
+m1_model_df_long <- read_csv("m1_model_df_long.csv")
+```
+
+```{r}
+idk <- m1_model_df_long %>% 
+  mutate(implicit_score = 100 * (((mc / 25) + ((100 - nle) / 100) + (tc / 12)) / 3),
+         explicit_score = 100 * ((en / 6) + (wn / 24) + (B10 / 10)) / 3) %>% 
+  select(composite, implicit_score, explicit_score, time) 
+
+
+im_median = median(idk$implicit_score, na.rm = TRUE)
+ex_median = median(idk$explicit_score, na.rm = TRUE)
+
+test = idk %>% 
+  mutate(category = case_when(
+    implicit_score > im_median & explicit_score > ex_median ~ "high_i_high_e",
+    implicit_score > im_median & explicit_score < ex_median ~ "high_i_low_e",
+    implicit_score < im_median & explicit_score > ex_median ~ "low_i_high_e",
+    TRUE ~ "low_i_low_e"))
+```
+
+
+```{r}
+test <- test %>% 
+  group_by(time, category) %>% 
+  summarise(mean = mean(composite, na.rm = TRUE))
+
+# test %>% 
+#   ggplot(aes(implicit_score, explicit_score, color = composite))+
+#   geom_point()+
+#   facet_wrap(.~category)+
+#   scale_color_viridis_c()
+
+test %>% 
+  ggplot(aes(category, composite, color = category))+
+  geom_boxplot()+
+  geom_jitter()+
+  facet_grid(.~time)+
+  guides(color = FALSE)+
+  NULL
+
+```
