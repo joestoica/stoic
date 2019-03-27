@@ -17,7 +17,7 @@ theme_stoic <- function(){
               panel.grid.minor = element_blank(),
               plot.margin = unit(c(1,1, 1, 1), "lines"),
               plot.title = element_text(hjust = 0, size = rel(1.5), face = "bold"),
-              strip.background = element_rect())
+              strip.background = element_blank())
 }
 
 # Fivethirtyeight
