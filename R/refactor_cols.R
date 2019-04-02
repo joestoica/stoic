@@ -1,3 +1,4 @@
 refactor_cols = function(df, cols) {
-    df[,cols] = lapply(df[, cols], as.factor)
+    df %>% mutate_at(vars(cols), as.factor)
 }
+
