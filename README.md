@@ -12,3 +12,11 @@ This is a package for my personal use. It contains functions that I've written a
 The inst folders contains directories used to create rmarkdown templates.
 
 R scripts are found in the R folder.
+
+Installation
+------------
+
+``` r
+# install.packages("devtools")
+devtools::install_github("joestoica/stoic")
+```
