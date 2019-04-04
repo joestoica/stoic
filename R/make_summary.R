@@ -23,7 +23,9 @@
 #' @export
 
 
-make_summary <- function(df, columns, funs = c("length", "mean", "var", "sd", "median", "max", "min"), range = TRUE) {
+make_summary <- function(df, columns,
+                         funs = c("length", "mean", "var", "sd", "median", "max", "min"), range = TRUE,
+                         drop = TRUE) {
 
     # Helper function that applies every input function to the certain column
     make_summary_helper = function(x, funs) {
@@ -55,8 +57,12 @@ make_summary <- function(df, columns, funs = c("length", "mean", "var", "sd", "m
 
         df_summary$range = df_summary$max - df_summary$min
 
-        # reorder columns, dropped 1 from beginning of list because variable isnt needed TODO change this
-        df_summary = df_summary[, c(2,3,4,5,6,9,7,8)]
+        # reorder columns
+        if (drop == TRUE) {
+            df_summary = df_summary[, c(2,3,4,5,6,9,7,8)]
+        } else {
+            df_summary = df_summary[, c(1,2,3,4,5,6,9,7,8)]
+        }
     }
 
     return(df_summary)
