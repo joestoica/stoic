@@ -4,8 +4,13 @@
 #'
 #' @return A residual and QQ plot to check lm assumptions, as well as a VIF
 #' calculation to measure multicollinearity.
+#' @export
+#'
 #'
 lm_assumption <- function(model){
+    library(ggplot2)
+    library(magrittr)
+
     p1 <- data.frame(f = fitted(model), r = resid(model)) %>%
         ggplot(aes(f, r))+
         geom_point()+

@@ -1,5 +1,17 @@
-lmm_assumption <- function(model){
+#' Linear Mixed Models Check Assumptions
+#'
+#' @param model A linear mixed model fitted using the lme4 package
+#'
+#' @return Plots for to check normality assumptions for residuals
+#'  and random effects
+#' @export
+#'
+#' @examples
 
+
+lmm_assumption <- function(model){
+    library(ggplot2)
+    library(magrittr)
     model_df = data.frame(f = fitted(model), resid = resid(model), ranef(model)$id)
 
     names(model_df)[3] = "ranef"

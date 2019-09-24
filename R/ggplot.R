@@ -1,4 +1,10 @@
  # ggplot2 theme
+#' Title
+#'
+#' @return
+#'
+#' @examples
+
 theme_stoic <- function(){
 
     theme_bw(base_size=12, base_family="sans") %+replace%

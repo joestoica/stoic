@@ -5,6 +5,10 @@
 #'
 #' @return a dataframe
 #'
+#' @export
+
 refactor_cols = function(df, cols) {
+    library(dplyr)
+    library(magrittr)
     df %>% mutate_at(vars(cols), as.factor)
 }
