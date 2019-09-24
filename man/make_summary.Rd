@@ -5,7 +5,7 @@
 \title{Makes a summary table of specific data frame columns given certain functions.}
 \usage{
 make_summary(df, columns, funs = c("length", "mean", "var", "sd",
-  "median", "max", "min", "skewness", "kurtosis"), range = TRUE)
+  "median", "max", "min"), range = TRUE, drop = TRUE)
 }
 \arguments{
 \item{df}{data frame that supplies the data}
@@ -27,11 +27,10 @@ A data frame with number of rows equal to length of the column
 \examples{
 make_summary(iris, 1:4)
 make_summary(iris, c("Sepal.Length", "Sepal.Width"))
-#' make_summary(iris, 1:4, funs = c("length", "mean", "var", "sd", "median", "min", "skewness", "kurtosis"), range = FALSE)
+#' make_summary(iris, 1:4, funs = c("length", "mean", "var", "sd", "median", "min"), range = FALSE)
 
 \dontrun{
 make_summary(iris, c(Sepal.Length, Sepal.Width))
-make_summary(iris, 1:4, funs = c("length", "mean", "var", "sd", "median", "min", "skewness", "kurtosis"), range = TRUE)
+make_summary(iris, 1:4, funs = c("length", "mean", "var", "sd", "median", "min"), range = TRUE)
 }
-
 }

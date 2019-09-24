@@ -1,3 +1,10 @@
+#' Linear Model Assumption Checker
+#'
+#' @param model An lm object
+#'
+#' @return A residual and QQ plot to check lm assumptions, as well as a VIF
+#' calculation to measure multicollinearity.
+#'
 lm_assumption <- function(model){
     p1 <- data.frame(f = fitted(model), r = resid(model)) %>%
         ggplot(aes(f, r))+
