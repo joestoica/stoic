@@ -54,6 +54,7 @@ xkcd <- function(comic_number = NULL, random = FALSE){
     }
 
     # Get comic data
+    num <- xkcd_meta_data$num
     title <- xkcd_meta_data$title
     imgsrc <- xkcd_meta_data$img
     alt = xkcd_meta_data$alt
@@ -87,8 +88,11 @@ xkcd <- function(comic_number = NULL, random = FALSE){
         geom_blank()+
         theme_void()
 
-    # Print  the date
-    cat(paste0("Date: ", date))
+    # Print number
+    cat(paste0("Number: ", num))
+
+    # Print the date
+    cat(paste0("\nDate: ", date))
 
     # Print the title
     cat(paste0("\nTitle: ", title))
@@ -115,7 +119,7 @@ xkcd <- function(comic_number = NULL, random = FALSE){
     } else if (res == 3){
         xkcd(random = TRUE)
     } else if (res == 4){
-        return("Goodbye!")
+        return(cat("Goodbye!"))
     } else {
         # if the user does anything outside 1:4
         cat("Try again!\n")
